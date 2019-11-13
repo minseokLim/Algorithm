@@ -10,8 +10,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class SubmitCheck {
-	
-	
 	public static void main(String[] args) throws Exception {
 		List<Integer> questionList = new ArrayList<Integer>();
 		String packageNm = "part2";

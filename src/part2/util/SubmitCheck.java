@@ -13,27 +13,33 @@ public class SubmitCheck {
 	public static void main(String[] args) throws Exception {
 		List<Integer> questionList = new ArrayList<Integer>();
 		String packageNm = "part2";
-		String familyNm = "Lim";
+		String subPackageNm = "needToReview";
 		List<Integer> dpList = Arrays.asList(1463, 11726, 11727, 9095, 10844, 11057, 2193, 9465, 2156, 11053, 11055, 11722, 11054, 1912, 2579, 
 											1699, 2133, 9461, 2225, 2011, 11052);
 		questionList.addAll(dpList);
 		
 		duplicateCheck(questionList);
-		submitCheck(questionList, packageNm, familyNm);
+		submitCheck(questionList, packageNm, subPackageNm);
 	}
 
-	private static void submitCheck(List<Integer> questionList, String packageNm, String familyNm) {
+	private static void submitCheck(List<Integer> questionList, String packageNm, String subPackageNm) {
 		String currDir = System.getProperty("user.dir");
 		File directory = new File(currDir + File.separator + "src" + File.separator + packageNm);
+		File subDirectory = new File(currDir + File.separator + "src" + File.separator + packageNm + File.separator + subPackageNm);
+		File[] solvedFiles = directory.listFiles();
+		File[] needToReview = subDirectory.listFiles();
+		File[] totalSolved = new File[solvedFiles.length + needToReview.length];
+		System.arraycopy(solvedFiles, 0, totalSolved, 0, solvedFiles.length);
+		System.arraycopy(needToReview, 0, totalSolved, solvedFiles.length, needToReview.length);
 		
 		List<String> notSolved = questionList.stream().map(String::valueOf).collect(Collectors.toList());
-		List<String> solved = Arrays.stream(directory.listFiles()).filter(file -> !file.isDirectory())
-				.map(file -> file.getName().substring(familyNm.length(), file.getName().lastIndexOf('.')))
+		List<String> solved = Arrays.stream(totalSolved).filter(file -> !file.isDirectory() && !file.getName().contains("_"))
+				.map(file -> file.getName().replaceAll("\\D", ""))
 				.filter(notSolved::contains)
 				.collect(Collectors.toList());
 		
 		notSolved.removeAll(solved);
-		System.out.println("풀지 않은 문제 목록 : " + notSolved);
+		System.out.println("Unsolved list : " + notSolved);
 	}
 	
 	private static void duplicateCheck(List<Integer> questionList) throws Exception {
@@ -50,7 +56,7 @@ public class SubmitCheck {
 				}
 			}
 			
-			throw new Exception("추가된 문제에서 중복된 항목이 있습니다. --> " + duplicateSet);
+			throw new Exception("Duplication Error --> " + duplicateSet);
 		}
 	}
 }

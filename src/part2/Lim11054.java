@@ -1,10 +1,10 @@
-package part2.needToReview;
+package part2;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Lim11053 {
+public class Lim11054 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
@@ -15,29 +15,40 @@ public class Lim11053 {
 			seq[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		int[] max = new int[n];
-		max[0] = 1;
+		int[] max1 = new int[n];
+		max1[0] = 1;
 		
 		for(int i = 1; i < n; i++) {
-			max[i] = 1;
+			max1[i] = 1;
 			
 			for(int j = i - 1; j >= 0; j--) {
-				
-				if(seq[i] > seq[j] && max[j] + 1 > max[i]) {
-					max[i] = max[j] + 1;
+				if(seq[j] < seq[i] && max1[j] + 1 > max1[i]) {
+					max1[i] = max1[j] + 1;
 				}
 			}
 		}
 		
-		int answer = 0;
+		int[] max2 = new int[n];
+		max2[n - 1] = 1;
 		
-		for(int i = 0; i < n; i++) {
+		for(int i = n - 2; i >= 0; i--) {
+			max2[i] = 1;
 			
-			if(answer < max[i]) {
-				answer = max[i];
+			for(int j = i + 1; j < n; j++) {
+				if(seq[j] < seq[i] && max2[j] + 1 > max2[i]) {
+					max2[i] = max2[j] + 1;
+				}
 			}
 		}
 		
+		int answer = max1[0] + max2[0] - 1;
+		
+		for(int i = 1; i < n; i++) {
+			if(answer < max1[i] + max2[i] - 1) {
+				answer = max1[i] + max2[i] - 1;
+			}
+		}
+
 		System.out.println(answer);
 	}
 }

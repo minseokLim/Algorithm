@@ -1,10 +1,10 @@
-package part2.needToReview;
+package part2;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Lim11053 {
+public class Lim11055 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
@@ -16,23 +16,22 @@ public class Lim11053 {
 		}
 		
 		int[] max = new int[n];
-		max[0] = 1;
+		max[0] = seq[0];
 		
 		for(int i = 1; i < n; i++) {
-			max[i] = 1;
+			max[i] = seq[i];
 			
-			for(int j = i - 1; j >= 0; j--) {
+			for(int j = n - 1; j >= 0; j--) {
 				
-				if(seq[i] > seq[j] && max[j] + 1 > max[i]) {
-					max[i] = max[j] + 1;
+				if(seq[j] < seq[i] && max[j] + seq[i] > max[i]) {
+					max[i] = max[j] + seq[i];
 				}
 			}
 		}
 		
-		int answer = 0;
+		int answer = max[0];
 		
-		for(int i = 0; i < n; i++) {
-			
+		for(int i = 1; i < n; i++) {
 			if(answer < max[i]) {
 				answer = max[i];
 			}

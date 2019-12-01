@@ -1,41 +1,36 @@
 package part2;
 
+// https://compasstree934.tistory.com/13
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-// TODO need to change source code refering to other's code
-public class _Lim2225 {
+public class Lim2225_2 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		int n = Integer.parseInt(st.nextToken());
 		int k = Integer.parseInt(st.nextToken());
+		int[][] dp = new int[n + 1][k + 1];
 		
-		long[] cnt = new long[n + 1];
-		cnt[n] = 1;
-		
-		for(int i = 1; i < k; i++) {
-			long[] tmp = new long[n + 1];
-			
-			for(int j = 0; j <= n; j++) {
-				
-				for(int h = j; h <= n; h++) {
-					tmp[j] += cnt[h];
-				}
-				
-				tmp[j] %= 1_000_000_000;
-			}
-			
-			cnt = tmp;
+		for(int i = 1; i <= k; i++) {
+			dp[0][i] = 1;
+//			dp[1][i] = i;
 		}
-				
-		long answer = 0;
 		
 		for(int i = 0; i <= n; i++) {
-			answer += cnt[i];
+			dp[i][1] = 1;
 		}
 		
-		System.out.println(answer % 1_000_000_000);
+		for(int i = 1; i <= n; i++) {
+			for(int j = 2; j <= k; j++) {
+				for(int h = 0; h <= i; h++) {
+					dp[i][j] += dp[h][j - 1];
+					dp[i][j] %= 1_000_000_000;
+				}				
+			}
+		}
+		
+		System.out.println(dp[n][k]);
 	}
 }

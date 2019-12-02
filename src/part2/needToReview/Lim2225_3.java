@@ -1,4 +1,4 @@
-package part2;
+package part2.needToReview;
 
 // https://compasstree934.tistory.com/13
 import java.io.BufferedReader;

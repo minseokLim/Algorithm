@@ -3,7 +3,7 @@ package part2;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class _Lim2011 {
+public class Lim2011 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		char[] input = br.readLine().toCharArray();
@@ -25,7 +25,7 @@ public class _Lim2011 {
 			switch (pwd[i - 1]) {
 			case '1':
 				if(pwd[i] == '0') {
-					cnt[i] = cnt[i - 1];
+					cnt[i] = cnt[i - 2];
 				} else {
 					cnt[i] = (cnt[i - 1] + cnt[i - 2]) % 1000_000;
 				}
@@ -33,6 +33,8 @@ public class _Lim2011 {
 			case '2':
 				if(pwd[i] >= '1' && pwd[i] <= '6') {
 					cnt[i] = (cnt[i - 1] + cnt[i - 2]) % 1000_000;
+				} else if(pwd[i] == '0') {
+					cnt[i] = cnt[i - 2];
 				} else {
 					cnt[i] = cnt[i - 1];
 				}

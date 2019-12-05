@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class Lim11652 {
+public class _Lim11652 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
@@ -13,8 +13,8 @@ public class Lim11652 {
 		for(int i = 0; i < n; i++) {
 			cards[i] = Long.parseLong(br.readLine());
 		}
-		
-		Arrays.sort(cards);
+
+		mergeSort(cards, 0, n - 1);
 		
 		long answer = cards[0];
 		int cnt = 1;
@@ -38,5 +38,20 @@ public class Lim11652 {
 		}
 		
 		System.out.println(answer);
+	}
+
+	private static void mergeSort(long[] cards, int s, int e) {
+		if(s < e) {
+			int m = (s + e) / 2;
+			
+			mergeSort(cards, s, m);
+			mergeSort(cards, m + 1, e);
+			
+			merge(cards, s, e, m);
+		}
+	}
+
+	private static void merge(long[] cards, int s, int e, int m) {
+		int[] tmp = new int[e - s + 1];
 	}
 }

@@ -3,7 +3,7 @@ package part2;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class _Lim11652 {
+public class Lim11652 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
@@ -12,7 +12,8 @@ public class _Lim11652 {
 		for(int i = 0; i < n; i++) {
 			cards[i] = Long.parseLong(br.readLine());
 		}
-
+		
+//		Arrays.sort(cards);
 		mergeSort(cards, 0, n - 1);
 		
 		long answer = cards[0];

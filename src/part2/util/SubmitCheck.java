@@ -18,7 +18,7 @@ public class SubmitCheck {
 											1699, 2133, 9461, 2225, 2011, 11052);
 		questionList.addAll(dpList);
 		
-		List<Integer> mathList = Arrays.asList(2751, 11652, 10828, 9012, 10799, 10845, 10866, 10808, 
+		List<Integer> mathList = Arrays.asList(2751, 11652, 10799, 10845, 10866, 10808, 
 											  10809, 10820, 2743, 11655, 10824, 11656, 1406, 1158, 1168, 10430, 2609, 1934, 1850, 9613, 11005, 
 											  2745, 1373, 1212, 2089, 11576, 1978, 1929, 6588, 11653, 10872, 1676, 2004);
 		questionList.addAll(mathList);

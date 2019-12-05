@@ -1,4 +1,4 @@
-package part1.template;
+package _template;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

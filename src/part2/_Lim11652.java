@@ -2,7 +2,6 @@ package part2;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 public class _Lim11652 {
 	public static void main(String[] args) throws Exception {
@@ -52,6 +51,28 @@ public class _Lim11652 {
 	}
 
 	private static void merge(long[] cards, int s, int e, int m) {
-		int[] tmp = new int[e - s + 1];
+		long[] tmp = new long[e - s + 1];
+		
+		int i = s;
+		int j = m + 1;
+		int k = 0;
+		
+		while(i <= m && j <= e) {
+			if(cards[i] < cards[j]) {
+				tmp[k++] = cards[i++];
+			} else {
+				tmp[k++] = cards[j++];
+			}
+		}
+		
+		while(i <= m) {
+			tmp[k++] = cards[i++];
+		}
+		
+		while(j <= e) {
+			tmp[k++] = cards[j++];
+		}
+		
+		System.arraycopy(tmp, 0, cards, s, tmp.length);
 	}
 }

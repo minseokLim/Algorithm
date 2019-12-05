@@ -51,10 +51,12 @@ public class MergeSort {
 			}
 		}
 		
-		if(i <= mid) {
-			System.arraycopy(arr, i, tmp, k, mid - i + 1);
-		} else {
-			System.arraycopy(arr, j, tmp, k, end - j + 1);
+		while(i <= mid) {
+			tmp[k++] = arr[i++];
+		}
+		
+		while(j <= end) {
+			tmp[k++] = arr[j++];
 		}
 		
 		System.arraycopy(tmp, 0, arr, start, tmp.length);

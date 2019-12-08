@@ -18,8 +18,11 @@ public class SubmitCheck {
 											 1699, 2133, 9461, 2225, 2011, 11052);
 		questionList.addAll(dpList);
 		
-		List<Integer> mathList = Arrays.asList(2751, 11652, 10799, 1406, 1168, 2609, 1850, 2089, 6588, 11653, 10872, 1676, 2004);
+		List<Integer> mathList = Arrays.asList(2751, 11652, 10799, 1406, 1168, 2609, 1850, 2089, 6588, 2004);
 		questionList.addAll(mathList);
+		
+		List<Integer> graphList = Arrays.asList(1260, 11724, 1707, 10451, 2331, 9466, 2667, 4963, 7576, 2178, 2146, 1991, 11725, 1167, 1967);
+		questionList.addAll(graphList);
 		
 		duplicateCheck(questionList);
 		submitCheck(questionList, packageNm, subPackageNm);

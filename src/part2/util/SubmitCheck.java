@@ -15,12 +15,10 @@ public class SubmitCheck {
 		String packageNm = "part2";
 		String subPackageNm = "needToReview";
 		List<Integer> dpList = Arrays.asList(1463, 11726, 11727, 9095, 10844, 11057, 2193, 9465, 2156, 11053, 11055, 11722, 11054, 1912, 2579, 
-											1699, 2133, 9461, 2225, 2011, 11052);
+											 1699, 2133, 9461, 2225, 2011, 11052);
 		questionList.addAll(dpList);
 		
-		List<Integer> mathList = Arrays.asList(2751, 11652, 10799, 1406, 1168, 2609, 1850, 
-											  9613, 11005, 
-											  2745, 1373, 1212, 2089, 11576, 1978, 1929, 6588, 11653, 10872, 1676, 2004);
+		List<Integer> mathList = Arrays.asList(2751, 11652, 10799, 1406, 1168, 2609, 1850, 2089, 6588, 11653, 10872, 1676, 2004);
 		questionList.addAll(mathList);
 		
 		duplicateCheck(questionList);

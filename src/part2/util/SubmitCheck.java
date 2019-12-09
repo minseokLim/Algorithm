@@ -45,7 +45,8 @@ public class SubmitCheck {
 				.collect(Collectors.toList());
 		
 		notSolved.removeAll(solved);
-		System.out.println("Unsolved list : " + notSolved);
+		System.out.println("Solved count : " + solved.size());
+		System.out.println("Unsolved list: " + notSolved);
 	}
 	
 	private static void duplicateCheck(List<Integer> questionList) throws Exception {

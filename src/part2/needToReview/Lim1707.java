@@ -1,12 +1,15 @@
-package part2;
+package part2.needToReview;
 
+// https://casterian.net/archives/78
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class _Lim1707 {
+public class Lim1707 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int k = Integer.parseInt(br.readLine());
@@ -16,12 +19,13 @@ public class _Lim1707 {
 			StringTokenizer st = new StringTokenizer(br.readLine());
 			int v = Integer.parseInt(st.nextToken());
 			int e = Integer.parseInt(st.nextToken());
+			int[] color = new int[v + 1];
 			
 			@SuppressWarnings("unchecked")
-			List<Integer>[] list = new ArrayList[v + 1];
+			List<Integer>[] lists = new ArrayList[v + 1];
 			
 			for(int j = 1; j <= v; j++) {
-				list[j] = new ArrayList<>();
+				lists[j] = new ArrayList<Integer>();
 			}
 			
 			for(int j = 0; j < e; j++) {
@@ -29,23 +33,22 @@ public class _Lim1707 {
 				int a = Integer.parseInt(st.nextToken());
 				int b = Integer.parseInt(st.nextToken());
 				
-				list[a].add(b);
-				list[b].add(a);
+				lists[a].add(b);
+				lists[b].add(a);
 			}
 			
-			boolean[] visited = new boolean[v + 1];
-			dfs(list, visited, 1);
-			
-			boolean divided = false;
+			boolean possible = true;
 			
 			for(int j = 1; j <= v; j++) {
-				if(!visited[j]) {
-					divided = true;
-					break;
-				}
+				if(color[j] == 0) {
+					if(!bfs(lists, color, j)) {
+						possible = false;
+						break;
+					};
+				}			
 			}
 			
-			if(divided) {
+			if(possible) {
 				sb.append("YES\n");
 			} else {
 				sb.append("NO\n");
@@ -55,13 +58,26 @@ public class _Lim1707 {
 		System.out.println(sb);
 	}
 
-	private static void dfs(List<Integer>[] list, boolean[] visited, int i) {
-		visited[i] = true;
+	private static boolean bfs(List<Integer>[] lists, int[] color, int s) {
+		boolean ret = true;
+		color[s] = 1;
+		Queue<Integer> queue = new LinkedList<Integer>();
+		queue.offer(s);
 		
-		for(int next : list[i]) {
-			if(!visited[next]) {
-				dfs(list, visited, next);
+		outer : while(!queue.isEmpty()) {
+			int poll = queue.poll();
+			
+			for(int elem : lists[poll]) {
+				if(color[elem] == 0) {
+					color[elem] = color[poll] * -1;
+					queue.add(elem);
+				} else if(color[elem] == color[poll]) {
+					ret = false;
+					break outer;
+				}
 			}
 		}
+		
+		return ret;
 	}
 }

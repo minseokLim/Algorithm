@@ -58,7 +58,9 @@ public class Lim1167 {
 			
 			if(!visited[dest]) {
 				dfs(lists, visited, dest, length + len);
-				visited[dest] = false;
+				// 트리는 사이클이 없는 무방향 그래프
+				// 트리에서는 어떤 두 노드를 선택해도 둘 사이에 경로가 항상 하나만 존재하게 된다라고 한다 -> visited를 굳이 false로 원복시킬 이유가 없음. 
+				// visited[dest] = false; 
 			}
 		}
 	}

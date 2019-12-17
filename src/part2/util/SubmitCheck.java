@@ -24,7 +24,7 @@ public class SubmitCheck {
 		List<Integer> graphList = Arrays.asList(1260, 11724, 1707, 9466, 2667, 2178, 2146, 1991, 11725, 1167, 1967);
 		questionList.addAll(graphList);
 		
-		List<Integer> pSearchList = Arrays.asList(1654, 2805, 2110, 10815, 10816, 11662);
+		List<Integer> pSearchList = Arrays.asList(1654, 2805, 2110, 10816, 11662);
 		questionList.addAll(pSearchList);
 		
 		List<Integer> greedyList = Arrays.asList(11047, 2875, 10610, 1783, 1931, 11399, 2873, 1744);
@@ -57,7 +57,7 @@ public class SubmitCheck {
 		
 		notSolved.removeAll(solved);
 		System.out.println("Question count : " + questionList.size());
-		System.out.println("Solved count : " + solved.size());
+		System.out.println("Solved count   : " + solved.size());
 		System.out.println("Unsolved count : " + notSolved.size());
 		System.out.println("Need to review : " + needToReviewSet.size());
 		System.out.println("Unsolved list: " + notSolved);

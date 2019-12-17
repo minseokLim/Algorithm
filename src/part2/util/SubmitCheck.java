@@ -55,8 +55,10 @@ public class SubmitCheck {
 				.collect(Collectors.toList());
 		
 		notSolved.removeAll(solved);
+		System.out.println("Question count : " + questionList.size());
 		System.out.println("Solved count : " + solved.size());
 		System.out.println("Unsolved count : " + notSolved.size());
+		System.out.println("Need to review : " + needToReview.length);
 		System.out.println("Unsolved list: " + notSolved);
 	}
 	

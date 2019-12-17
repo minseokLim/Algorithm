@@ -53,12 +53,13 @@ public class SubmitCheck {
 				.map(file -> file.getName().replaceAll("\\D", ""))
 				.filter(notSolved::contains)
 				.collect(Collectors.toList());
+		Set<String> needToReviewSet = Arrays.stream(needToReview).filter(file -> !file.isDirectory()).map(file -> file.getName().replaceAll("_\\d+", "")).collect(Collectors.toSet());
 		
 		notSolved.removeAll(solved);
 		System.out.println("Question count : " + questionList.size());
 		System.out.println("Solved count : " + solved.size());
 		System.out.println("Unsolved count : " + notSolved.size());
-		System.out.println("Need to review : " + needToReview.length);
+		System.out.println("Need to review : " + needToReviewSet.size());
 		System.out.println("Unsolved list: " + notSolved);
 	}
 	

@@ -27,7 +27,7 @@ public class SubmitCheck {
 		List<Integer> pSearchList = Arrays.asList(1654, 2805, 2110, 10816, 11662);
 		questionList.addAll(pSearchList);
 		
-		List<Integer> greedyList = Arrays.asList(11047, 2875, 10610, 1783, 1931, 11399, 2873, 1744);
+		List<Integer> greedyList = Arrays.asList(10610, 1783, 1931, 11399, 2873, 1744);
 		questionList.addAll(greedyList);
 		
 		List<Integer> fSearchList = Arrays.asList(1476, 1107, 1451, 10819, 10971, 1697, 1963, 9019, 1525, 2251, 2186, 3108, 5014, 1759, 2580, 1987, 

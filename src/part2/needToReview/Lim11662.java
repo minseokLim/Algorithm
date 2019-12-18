@@ -1,11 +1,10 @@
-package part2;
+package part2.needToReview;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-// 이것도 통과하긴 하였으나 삼분탐색으로 풀어봅시다.
-public class _Lim11662 {
+public class Lim11662 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -18,7 +17,6 @@ public class _Lim11662 {
 		double dX = Double.parseDouble(st.nextToken());
 		double dY = Double.parseDouble(st.nextToken());
 		
-//		long t = (long) (Math.abs(aX - bX) * 1000_000);
 		int t = 1000_000;
 		
 		double dx1 = (bX - aX) / t;
@@ -26,16 +24,34 @@ public class _Lim11662 {
 		double dx2 = (dX - cX) / t;
 		double dy2 = (dY - cY) / t;
 		
-		double min = getDistance(aX, aY, cX, cY);
+		double min = Double.MAX_VALUE;
+		int lo = 0;
+		int hi = t;
 		
-		for(int i = 1; i <= t; i++) {
-			double distance = getDistance(aX + dx1 * i, aY + dy1 * i, cX + dx2 * i, cY + dy2 * i);
+		while(hi - lo >= 3) {
+			int p = (2 * lo + hi) / 3;
+			int q = (lo + 2 * hi) / 3;
 			
-			if(min > distance) {
-				min = distance;
+			double distP = getDistance(aX + dx1 * p, aY + dy1 * p, cX + dx2 * p, cY + dy2 * p);
+			double distQ = getDistance(aX + dx1 * q, aY + dy1 * q, cX + dx2 * q, cY + dy2 * q);
+			
+			if(distP < distQ) {
+				hi = q;
+			} else {
+				lo = p;
 			}
 		}
 		
+		while(lo <= hi) {
+			double distance = getDistance(aX + dx1 * lo, aY + dy1 * lo, cX + dx2 * lo, cY + dy2 * lo);
+			
+			if(distance < min) {
+				min = distance;
+			}
+			
+			lo++;
+		}
+				
 		System.out.println(min);
 	}
 	

@@ -24,15 +24,19 @@ public class SubmitCheck {
 		List<Integer> graphList = Arrays.asList(1260, 11724, 1707, 9466, 2667, 2178, 2146, 1991, 11725, 1167, 1967);
 		questionList.addAll(graphList);
 		
-		List<Integer> pSearchList = Arrays.asList(1654, 2805, 2110, 10816, 11662);
-		questionList.addAll(pSearchList);
+		List<Integer> binarySearchList = Arrays.asList(1654, 2805, 2110, 10816);
+		questionList.addAll(binarySearchList);
 		
 		List<Integer> greedyList = Arrays.asList(10610, 1783, 1931, 11399, 2873, 1744);
 		questionList.addAll(greedyList);
 		
-		List<Integer> fSearchList = Arrays.asList(1476, 1107, 1451, 10819, 10971, 1697, 1963, 9019, 1525, 2251, 2186, 3108, 5014, 1759, 2580, 1987, 
+		List<Integer> exhaustiveSearchList = Arrays.asList(1476, 1107, 1451, 10819, 10971, 1697, 1963, 9019, 1525, 2251, 2186, 3108, 5014, 1759, 2580, 1987, 
 				 								  6603, 1182, 2003, 1806, 1644, 1261, 1208, 7453, 2632, 2143);
-		questionList.addAll(fSearchList);
+		questionList.addAll(exhaustiveSearchList);
+		
+		// https://m.blog.naver.com/PostView.nhn?blogId=kks227&logNo=221432986308&proxyReferer=https%3A%2F%2Fwww.google.com%2F
+		List<Integer> ternarySearchList = Arrays.asList(11662, 8986, 13310, 1087);
+		questionList.addAll(ternarySearchList);
 		
 		duplicateCheck(questionList);
 		submitCheck(questionList, packageNm, subPackageNm);

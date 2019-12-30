@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+// visit 체크 안했어-_-
 public class _Lim1697 {	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -40,7 +41,7 @@ public class _Lim1697 {
 			}
 			
 			if(idx < k) {
-				if(!visited[idx * 2]) {
+				if(idx != 0 && !visited[idx * 2]) {
 					queue.offer(new Point(idx * 2, time + 1));
 				}
 				
@@ -49,7 +50,7 @@ public class _Lim1697 {
 				}
 			}
 					
-			if(!visited[idx - 1] && idx > 0) {
+			if(idx > 0 && !visited[idx - 1]) {
 				queue.offer(new Point(idx - 1, time + 1));
 			}		
 		}

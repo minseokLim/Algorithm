@@ -1,4 +1,4 @@
-package part2;
+package part2.needToReview;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -6,8 +6,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-// visit 체크 안했어-_-
-public class _Lim1697 {	
+public class Lim1697 {	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -24,10 +23,10 @@ public class _Lim1697 {
 	}
 
 	private static int bfs(int n, int k) {
-		Queue<Point> queue = new LinkedList<Point>();
-		queue.offer(new Point(n, 0));
 		boolean[] visited = new boolean[200001];
 		visited[n] = true;
+		Queue<Point> queue = new LinkedList<Point>();
+		queue.offer(new Point(n, 0));
 		int min = 0;
 		
 		while(!queue.isEmpty()) {
@@ -42,15 +41,18 @@ public class _Lim1697 {
 			
 			if(idx < k) {
 				if(idx != 0 && !visited[idx * 2]) {
+					visited[idx * 2] = true;
 					queue.offer(new Point(idx * 2, time + 1));
 				}
 				
 				if(!visited[idx + 1]) {
+					visited[idx + 1] = true;
 					queue.offer(new Point(idx + 1, time + 1));
 				}
 			}
 					
 			if(idx > 0 && !visited[idx - 1]) {
+				visited[idx - 1] = true;
 				queue.offer(new Point(idx - 1, time + 1));
 			}		
 		}

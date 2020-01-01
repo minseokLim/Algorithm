@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-// TODO 효율성 잘 나오는 코드 분석 필요
 public class Lim11724 {
 	
 	static boolean[] visitRec;

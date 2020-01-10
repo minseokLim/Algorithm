@@ -13,7 +13,7 @@ public class _Lim3108 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
 		List<Rectangle> input = new LinkedList<Rectangle>();
-		List<List<Rectangle>> lists = new ArrayList<List<Rectangle>>();
+		boolean[][] matrix = new boolean[n][n];
 		
 		for(int i = 0; i < n; i++) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
@@ -25,22 +25,10 @@ public class _Lim3108 {
 			input.add(new Rectangle(x1, y1, x2, y2));
 		}
 		
-		while(!input.isEmpty()) {
-			Rectangle rec = input.remove(0);
+		for(int i = input.size() - 1; i >= 0; i++) {
+			Rectangle rec = input.remove(i);
 			
-			for(List<Rectangle> list : lists) {
-				for(Rectangle elem : list) {
-					if(elem.intersect(rec)) {
-						list.add(rec);
-						break;
-					}
-				}
-			}
-			
-			List<Rectangle> newList = new ArrayList<Rectangle>();
 		}
-		
-		System.out.println(input);
 	}
 	
 	private static class Rectangle {

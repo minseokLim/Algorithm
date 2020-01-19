@@ -1,11 +1,11 @@
-package _template;
+package part2;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetPrimeNumbers {
+public class Lim1644_2 {	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
@@ -15,10 +15,31 @@ public class GetPrimeNumbers {
 		
 		calPrime(isNotPrime, n);
 		setPrime(list, isNotPrime, n);
-				
-		System.out.println(list);
+		
+		int left = 0;
+		int right = 0;
+		int sum = 0;
+		int cnt = 0;
+		
+		while(true) {
+			try {
+				if(sum < n) {
+					sum += list.get(right++);
+				} else {
+					if(sum == n) {
+						cnt++;
+					}
+					
+					sum -= list.get(left++);
+				}
+			} catch (IndexOutOfBoundsException e) {
+				break;
+			}		
+		}
+		
+		System.out.println(cnt);
 	}
-	
+
 	private static void setPrime(List<Integer> list, boolean[] isNotPrime, int n) {
 		for(int i = 2; i <= n; i++) {
 			if(!isNotPrime[i]) {
@@ -41,3 +62,4 @@ public class GetPrimeNumbers {
 		}
 	}
 }
+

@@ -2,12 +2,12 @@ package part2;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class _Lim1261 {
-	private static int[] di = {1, 0, -1, 0};
-	private static int[] dj = {0, 1, 0, -1};
+public class _Lim1261_2 {
+	private static int[] di = {-1, 1, 0, 0};
+	private static int[] dj = {0, 0, -1, 1};
+	private static int min = Integer.MAX_VALUE;
 	private static int m;
 	private static int n;
 	
@@ -27,57 +27,41 @@ public class _Lim1261 {
 			}
 		}
 		
-		int[][] dp = new int[n][m];
+		boolean[][] visited = new boolean[n][m];
 		
-		for(int i = 0; i < n; i++) {
-			Arrays.fill(dp[i], -1);
-		}
+		dfs(maze, visited, 0, 0, 0);
 		
-		dp[n - 1][m - 1] = 0;
-		
-		
-		for(int i = n - 1; i >= 0; i--) {
-			for(int j = m - 1; j >= 0; j--) {
-				boolean[][] visited = new boolean[n][m];
-				dp[i][j] = dfs(maze, visited, dp, i, j);
-			}
-		}
-		
-		for(int i = 0; i < n; i++) {
-			System.out.println(Arrays.toString(dp[i]));
-		}
-		
-		System.out.println(dp[0][0]);
+		System.out.println(min);
 	}
 
-	private static int dfs(boolean[][] maze, boolean[][] visited, int[][] dp, int i, int j) {
+	private static void dfs(boolean[][] maze, boolean[][] visited, int i, int j, int cnt) {
 		visited[i][j] = true;
 		
-		if(dp[i][j] != -1) {
-			return dp[i][j];
+		if(cnt >= min) {
+			return;
 		}
 		
-		int min = -1;
+		if(i == n - 1 && j == m - 1) {
+			if(cnt < min) {
+				min = cnt;
+			}
+			
+			return;
+		}
 		
 		for(int k = 0; k < 4; k++) {
 			int nextI = i + di[k];
 			int nextJ = j + dj[k];
 			
 			if(nextI >= 0 && nextI < n && nextJ >= 0 && nextJ < m && !visited[nextI][nextJ]) {
-				int tmp = dfs(maze, visited, dp, nextI, nextJ);
-				
-				if(tmp != -1) {
-					if(!maze[nextI][nextJ]) tmp++;
-					
-					if(min == -1 || tmp < min) {
-						min = tmp;
-					}
+				if(maze[nextI][nextJ]) {
+					dfs(maze, visited, nextI, nextJ, cnt);
+				} else {
+					dfs(maze, visited, nextI, nextJ, cnt + 1);
 				}
 				
 				visited[nextI][nextJ] = false;
 			}
 		}
-		
-		return min;
 	}
 }

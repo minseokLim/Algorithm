@@ -35,8 +35,9 @@ public class SubmitCheck {
 		questionList.addAll(exhaustiveSearchList);
 		
 		// https://m.blog.naver.com/PostView.nhn?blogId=kks227&logNo=221432986308&proxyReferer=https%3A%2F%2Fwww.google.com%2F
+		List<Integer> ternarySearchList = Arrays.asList(11662);
 //		List<Integer> ternarySearchList = Arrays.asList(11662, 8986, 13310, 1087);
-//		questionList.addAll(ternarySearchList);
+		questionList.addAll(ternarySearchList);
 		
 		duplicateCheck(questionList);
 		submitCheck(questionList, packageNm, subPackageNm);

@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class _Lim1931 {
+public class Lim1931 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
@@ -20,6 +20,19 @@ public class _Lim1931 {
 		
 		Arrays.sort(meetings);
 		
+		int cnt = 1;
+		Meeting pastMeeting = meetings[0];
+		
+		for(int i = 1; i < n; i++) {
+			Meeting meeting = meetings[i];
+			
+			if(!meeting.intersect(pastMeeting)) {
+				cnt++;
+				pastMeeting = meetings[i];
+			}
+		}
+		
+		System.out.println(cnt);
 	}
 	
 	private static class Meeting implements Comparable<Meeting> {
@@ -45,8 +58,7 @@ public class _Lim1931 {
 		}
 		
 		public boolean intersect(Meeting obj) {
-			return obj.getStart() < this.end && obj.getStart() > this.start
-					|| obj.getEnd() > this.start && obj.getEnd() < this.end;
+			return obj.getStart() < this.end && obj.getEnd() > this.start;
 		}
 	}
 }

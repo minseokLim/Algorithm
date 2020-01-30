@@ -11,11 +11,11 @@ public class _Lim2225 {
 //		int n = Integer.parseInt(st.nextToken());
 //		int k = Integer.parseInt(st.nextToken());
 		
-		System.out.println(combination(20, 1, 1, 0));
+		System.out.println(combination(20, 3, 1, 0));
 	}
 	
 	private static long combination(int n, int r, int target, int depth) {
-		if(depth == r - 1) {
+		if(depth == r) {
 			return 1;
 		} else if(target > n) {
 			return 0;

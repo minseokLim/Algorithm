@@ -16,7 +16,7 @@ public class Lim1697 {
 		if(n >= k) {
 			System.out.println(n - k);
 		} else {
-			boolean[] visited = new boolean[200001];
+			boolean[] visited = new boolean[k * 2 + 1];
 			visited[n] = true;
 			Queue<Status> queue = new LinkedList<Status>();
 			queue.offer(new Status(n, 0));

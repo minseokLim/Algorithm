@@ -35,6 +35,8 @@ public class SubmitCheck {
 		System.arraycopy(solvedFiles, 0, totalSolved, 0, solvedFiles.length);
 		System.arraycopy(needToReview, 0, totalSolved, solvedFiles.length, needToReview.length);
 		
+		int questionCnt = questionList.size();
+		
 		List<String> notSolved = questionList;
 		List<String> solved = Arrays.stream(totalSolved).filter(file -> !file.isDirectory() && !file.getName().contains("_"))
 				.map(file -> file.getName().replaceAll("\\D", ""))
@@ -43,7 +45,7 @@ public class SubmitCheck {
 		Set<String> needToReviewSet = Arrays.stream(needToReview).filter(file -> !file.isDirectory()).map(file -> file.getName().replaceAll("_\\d+", "")).collect(Collectors.toSet());
 		
 		notSolved.removeAll(solved);
-		System.out.println("Question count : " + questionList.size());
+		System.out.println("Question count : " + questionCnt);
 		System.out.println("Solved count   : " + solved.size());
 		System.out.println("Unsolved count : " + notSolved.size());
 		System.out.println("Need to review : " + needToReviewSet.size());

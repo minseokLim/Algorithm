@@ -9,26 +9,26 @@ public class Lim11662 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		double aX1 = Double.parseDouble(st.nextToken());
-		double aY1 = Double.parseDouble(st.nextToken());
-		double aX2 = Double.parseDouble(st.nextToken());
-		double aY2 = Double.parseDouble(st.nextToken());
-		double cX1 = Double.parseDouble(st.nextToken());
-		double cY1 = Double.parseDouble(st.nextToken());
-		double cX2 = Double.parseDouble(st.nextToken());
-		double cY2 = Double.parseDouble(st.nextToken());
+		double aX = Double.parseDouble(st.nextToken());
+		double aY = Double.parseDouble(st.nextToken());
+		double bX = Double.parseDouble(st.nextToken());
+		double bY = Double.parseDouble(st.nextToken());
+		double cX = Double.parseDouble(st.nextToken());
+		double cY = Double.parseDouble(st.nextToken());
+		double dX = Double.parseDouble(st.nextToken());
+		double dY = Double.parseDouble(st.nextToken());
 		
 		int interval = 1000000;
 		
-		double aDX = (aX2 - aX1) / interval;
-		double aDY = (aY2 - aY1) / interval;
-		double cDX = (cX2 - cX1) / interval;
-		double cDY = (cY2 - cY1) / interval;
+		double aDX = (bX - aX) / interval;
+		double aDY = (bY - aY) / interval;
+		double cDX = (dX - cX) / interval;
+		double cDY = (dY - cY) / interval;
 		
-		double min = getDistance(aX1, aY1, cX1, cY1);
+		double min = getDistance(aX, aY, cX, cY);
 		
 		for(int i = 1; i <= interval; i++) {
-			double tmp = getDistance(aX1 + aDX * i, aY1 + aDY * i, cX1 + cDX * i, cY1 + cDY * i);
+			double tmp = getDistance(aX + aDX * i, aY + aDY * i, cX + cDX * i, cY + cDY * i);
 			
 			if(tmp < min) {
 				min = tmp;

@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class _Lim11662_2 {
+public class Lim11662_2 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -25,17 +25,17 @@ public class _Lim11662_2 {
 		double cDX = (cX2 - cX1) / interval;
 		double cDY = (cY2 - cY1) / interval;
 		
-		double min = getDistance(aX1, aY1, cX1, cY1);
+		double i = -1 * ((aX1 - cX1) * (aDX - cDX) + (aY1 - cY1) * (aDY - cDY)) / (Math.pow(aDX - cDX, 2) + Math.pow(aDY - cDY, 2));
 		
-		for(int i = 1; i <= interval; i++) {
-			double tmp = getDistance(aX1 + aDX * i, aY1 + aDY * i, cX1 + cDX * i, cY1 + cDY * i);
+		if(!Double.isNaN(i) && i < interval && i > 0) {
+			double min = getDistance(aX1 + aDX * i, aY1 + aDY * i, cX1 + cDX * i, cY1 + cDY * i);
+			System.out.println(min);
+		} else {
+			double min1 = getDistance(aX1, aY1, cX1, cY1);
+			double min2 = getDistance(aX2, aY2, cX2, cY2);
 			
-			if(tmp < min) {
-				min = tmp;
-			}
+			System.out.println(Math.min(min1, min2));
 		}
-		
-		System.out.println(min);
 	}
 	
 	private static double getDistance(double x1, double y1, double x2, double y2) {

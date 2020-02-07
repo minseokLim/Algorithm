@@ -1,5 +1,7 @@
 package part3;
 
+// https://m.blog.naver.com/PostView.nhn?blogId=kks227&logNo=221432986308&proxyReferer=https%3A%2F%2Fwww.google.com%2F
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
@@ -9,35 +11,52 @@ public class Lim11662_2 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		double aX1 = Double.parseDouble(st.nextToken());
-		double aY1 = Double.parseDouble(st.nextToken());
-		double aX2 = Double.parseDouble(st.nextToken());
-		double aY2 = Double.parseDouble(st.nextToken());
-		double cX1 = Double.parseDouble(st.nextToken());
-		double cY1 = Double.parseDouble(st.nextToken());
-		double cX2 = Double.parseDouble(st.nextToken());
-		double cY2 = Double.parseDouble(st.nextToken());
+		double aX = Double.parseDouble(st.nextToken());
+		double aY = Double.parseDouble(st.nextToken());
+		double bX = Double.parseDouble(st.nextToken());
+		double bY = Double.parseDouble(st.nextToken());
+		double cX = Double.parseDouble(st.nextToken());
+		double cY = Double.parseDouble(st.nextToken());
+		double dX = Double.parseDouble(st.nextToken());
+		double dY = Double.parseDouble(st.nextToken());
 		
 		int interval = 1000000;
 		
-		double aDX = (aX2 - aX1) / interval;
-		double aDY = (aY2 - aY1) / interval;
-		double cDX = (cX2 - cX1) / interval;
-		double cDY = (cY2 - cY1) / interval;
+		double aDX = (bX - aX) / interval;
+		double aDY = (bY - aY) / interval;
+		double cDX = (dX - cX) / interval;
+		double cDY = (dY - cY) / interval;
 		
-		double i = -1 * ((aX1 - cX1) * (aDX - cDX) + (aY1 - cY1) * (aDY - cDY)) / (Math.pow(aDX - cDX, 2) + Math.pow(aDY - cDY, 2));
+		int lo = 0;
+		int hi = interval;
 		
-		if(!Double.isNaN(i) && i < interval && i > 0) {
-			double min = getDistance(aX1 + aDX * i, aY1 + aDY * i, cX1 + cDX * i, cY1 + cDY * i);
-			System.out.println(min);
-		} else {
-			double min1 = getDistance(aX1, aY1, cX1, cY1);
-			double min2 = getDistance(aX2, aY2, cX2, cY2);
+		while(hi - lo >= 3) {
+			int p = (2 * lo + hi) / 3;
+			int q = (lo + 2 * hi) / 3;
 			
-			System.out.println(Math.min(min1, min2));
+			double pVal = getDistance(aX + aDX * p, aY + aDY * p, cX + cDX * p, cY + cDY * p);
+			double qVal = getDistance(aX + aDX * q, aY + aDY * q, cX + cDX * q, cY + cDY * q);
+			
+			if(pVal < qVal) {
+				hi = q - 1;
+			} else {
+				lo = p + 1;
+			}
 		}
+		
+		double min = getDistance(aX + aDX * hi, aY + aDY * hi, cX + cDX * hi, cY + cDY * hi);
+		
+		for(int i = lo; i < hi; i++) {
+			double temp = getDistance(aX + aDX * i, aY + aDY * i, cX + cDX * i, cY + cDY * i);
+			
+			if(temp < min) {
+				min = temp;
+			}
+		}
+		
+		System.out.println(min);
 	}
-	
+
 	private static double getDistance(double x1, double y1, double x2, double y2) {
 		return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 	}

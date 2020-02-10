@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class _Lim7453 {
+public class Lim7453 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.parseInt(br.readLine());
@@ -31,6 +31,7 @@ public class _Lim7453 {
 		
 		int left = 0;
 		int right = n * n - 1;
+		long cnt = 0;
 		
 		while(left < n * n && right >= 0) {
 			int leftVal = subsetAB[left];
@@ -42,11 +43,26 @@ public class _Lim7453 {
 					// do nothing
 				}
 			} else if(tmp > 0) {
-				
+				while(--right >= 0 && subsetCD[right] == rightVal) {
+					// do nothing
+				}
 			} else {
+				long leftCnt = 1;
+				long rightCnt = 1;
 				
+				while(++left < n * n && subsetAB[left] == leftVal) {
+					leftCnt++;
+				}
+				
+				while(--right >= 0 && subsetCD[right] == rightVal) {
+					rightCnt++;
+				}
+				
+				cnt += leftCnt * rightCnt;
 			}
 		}
+		
+		System.out.println(cnt);
 	}
 
 	private static int[] getSubset(int n, int[] a, int[] b) {

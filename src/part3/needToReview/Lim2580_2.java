@@ -6,8 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class Lim2580 {
+public class Lim2580_2 {
 	private static boolean finished = false;
+	private static boolean[][] checkI = new boolean[9][10];
+	private static boolean[][] checkJ = new boolean[9][10];
+	private static boolean[][][] checkBox = new boolean[3][3][10];
 	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -22,6 +25,10 @@ public class Lim2580 {
 				
 				if(puzzle[i][j] == 0) {
 					zeroList.add(new Point(i, j));
+				} else {
+					checkI[i][puzzle[i][j]] = true;
+					checkJ[j][puzzle[i][j]] = true;
+					checkBox[i / 3][j / 3][puzzle[i][j]] = true;
 				}
 			}
 		}
@@ -38,14 +45,16 @@ public class Lim2580 {
 			return;
 		}
 		
-		boolean[] checked = getCandidates(puzzle, point);
+		int i = point.getI();
+		int j = point.getJ();
 		
 		for(int k = 1; k <= 9; k++) {
-			if(!checked[k]) {
-				int i = point.getI();
-				int j = point.getJ();
+			if(!checkI[i][k] && !checkJ[j][k] && !checkBox[i / 3][j / 3][k]) {
 				
 				puzzle[i][j] = k;
+				checkI[i][k] = true;
+				checkJ[j][k] = true;
+				checkBox[i / 3][j / 3][k] = true;
 				
 				if(depth == zeroList.size() - 1) {
 					printPuzzle(puzzle);
@@ -55,6 +64,9 @@ public class Lim2580 {
 				
 				dfs(zeroList.get(depth + 1), puzzle, zeroList, depth + 1);			
 				puzzle[i][j] = 0;
+				checkI[i][k] = false;
+				checkJ[j][k] = false;
+				checkBox[i / 3][j / 3][k] = false;
 			}
 		}
 	}
@@ -72,32 +84,7 @@ public class Lim2580 {
 		
 		System.out.println(sb);
 	}
-	
-	private static boolean[] getCandidates(int[][] puzzle, Point point) {
-		int i = point.getI();
-		int j = point.getJ();
-		boolean[] checked = new boolean[10];
-		
-		for(int k = 0; k < 9; k++) {
-			checked[puzzle[i][k]] = true;
-		}
-		
-		for(int k = 0; k < 9; k++) {
-			checked[puzzle[k][j]] = true;
-		}
-		
-		int sI = i / 3 * 3;
-		int sJ = j / 3 * 3;
-		
-		for(int k = sI; k < sI + 3; k++) {
-			for(int h = sJ; h < sJ + 3; h++) {
-				checked[puzzle[k][h]] = true;
-			}
-		}
-		
-		return checked;
-	}
-	
+
 	private static class Point {
 		private int i;
 		private int j;

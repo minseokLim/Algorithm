@@ -3,7 +3,11 @@ HELP.md
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 
+### Ubuntu ###
 .attach_pid**
+
+### Mac ###
+.DS_Store
 
 ### STS ###
 .apt_generated

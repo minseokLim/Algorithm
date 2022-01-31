@@ -5,13 +5,10 @@ import java.io.InputStreamReader
 
 fun main() {
     val br = BufferedReader(InputStreamReader(System.`in`))
-    val n = br.readLine().toInt()
+    var t = br.readLine().toInt()
 
-    var answer = 0L
-
-    for (i in 1..n) {
-        answer += (n / i) * i
+    while(t-- > 0) {
+        val input = br.readLine().split(" ")
+        println(input.joinToString(" ") { it.reversed() })
     }
-
-    println(answer)
 }

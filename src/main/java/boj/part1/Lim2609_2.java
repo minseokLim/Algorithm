@@ -1,0 +1,30 @@
+package boj.part1;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+public class Lim2609_2 {
+	
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		int a = Integer.parseInt(st.nextToken());
+		int b = Integer.parseInt(st.nextToken());
+		
+		int g = gcd(a, b);
+		System.out.println(g);
+		System.out.println(a * b / g);
+	}
+	
+	private static int gcd(int a, int b) {
+		if(a < b) {
+			return gcd(b, a);
+		}
+		
+		if(a % b == 0) {
+			return b;
+		}
+		
+		return gcd(b, a % b);
+	}
+}

@@ -1,4 +1,4 @@
-package programmers.skillcheck
+package programmers.skillcheck.second
 
 class Test2 {
     fun solution(brown: Int, yellow: Int): IntArray {

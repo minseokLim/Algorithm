@@ -1,4 +1,4 @@
-package programmers.skillcheck
+package programmers.skillcheck.second
 
 class Test1 {
     fun solution(arr1: Array<IntArray>, arr2: Array<IntArray>): Array<IntArray> {

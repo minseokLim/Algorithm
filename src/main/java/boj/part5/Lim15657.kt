@@ -7,7 +7,7 @@ import java.util.StringJoiner
 private var n = 0
 private var m = 0
 private lateinit var numbers: List<Int>
-private val answer = StringJoiner(System.lineSeparator())
+private val answer = mutableSetOf<String>()
 
 fun main() {
     val br = BufferedReader(InputStreamReader(System.`in`))
@@ -17,21 +17,25 @@ fun main() {
     numbers = br.extractNumbers().sorted()
 
     for (i in 0 until n) {
-        solve(i, 1, "${numbers[i]}")
+        solve(i, 1, mutableListOf(numbers[i]))
     }
 
-    println(answer)
+    println(answer.joinToString(System.lineSeparator()))
 }
 
 private fun BufferedReader.extractNumbers() = this.readLine().split(" ").map { it.toInt() }
 
-private fun solve(idx: Int, depth: Int, seq: String) {
+private fun solve(idx: Int, depth: Int, list: MutableList<Int>) {
     if (depth == m) {
-        answer.add(seq)
+        answer.add(list.joinToString(" "))
         return
     }
 
-    for (i in idx until n) {
-        solve(i, depth + 1, "$seq ${numbers[i]}")
+    for (i in 0 until n) {
+        if (i != idx) {
+            list.add(numbers[i])
+            solve(i, depth + 1, list)
+            list.remove(numbers[i])
+        }
     }
 }

@@ -16,7 +16,7 @@ fun main() {
     println(solve(n))
 }
 
-fun solve(n: Int): String {
+private fun solve(n: Int): String {
     var x = n
     val result = StringBuilder()
 

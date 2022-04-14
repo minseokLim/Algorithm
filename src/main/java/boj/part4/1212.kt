@@ -18,7 +18,7 @@ fun main() {
     }.joinToString(""))
 }
 
-fun solve(c: Char, pad: Boolean = false): String {
+private fun solve(c: Char, pad: Boolean = false): String {
     var n = c.toString().toInt()
     val result = StringBuilder()
 

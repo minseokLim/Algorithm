@@ -20,7 +20,7 @@ fun main() {
     println(answer)
 }
 
-fun solve(str: String): Int {
+private fun solve(str: String): Int {
     var result = 0
 
     str.forEach {

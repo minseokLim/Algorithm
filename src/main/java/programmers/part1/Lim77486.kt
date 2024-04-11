@@ -1,4 +1,4 @@
-package programmers
+package programmers.part1
 
 import kotlin.math.ceil
 

@@ -1,4 +1,4 @@
-package programmers
+package programmers.part1
 
 class Lim60057 {
     fun solution(s: String): Int {

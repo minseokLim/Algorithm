@@ -1,4 +1,4 @@
-package programmers
+package programmers.part1
 
 class Lim77485 {
     fun solution(rows: Int, columns: Int, queries: Array<IntArray>): IntArray {

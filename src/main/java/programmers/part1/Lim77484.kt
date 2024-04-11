@@ -1,4 +1,4 @@
-package programmers
+package programmers.part1
 
 class Lim77484 {
     fun solution(lottos: IntArray, win_nums: IntArray): IntArray {

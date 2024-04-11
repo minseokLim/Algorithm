@@ -1,4 +1,4 @@
-package programmers
+package programmers.part1
 
 import java.lang.Integer.max
 import java.lang.Integer.min

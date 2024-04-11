@@ -1,4 +1,4 @@
-package programmers
+package programmers.part1
 
 class Lim42746 {
     fun solution(numbers: IntArray): String {

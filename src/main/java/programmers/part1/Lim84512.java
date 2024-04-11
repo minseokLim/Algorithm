@@ -1,4 +1,4 @@
-package programmers;
+package programmers.part1;
 
 public class Lim84512 {
     int answer = 0;

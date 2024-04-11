@@ -1,4 +1,4 @@
-package programmers;
+package programmers.part1;
 
 public class Lim42842 {
     public int[] solution(int brown, int yellow) {
